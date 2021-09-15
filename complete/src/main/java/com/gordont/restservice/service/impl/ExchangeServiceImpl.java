@@ -14,11 +14,22 @@ public class ExchangeServiceImpl implements ExchangeService {
     @Autowired
     DataStorageService dataStorageService;
 
+    /**
+     * Add a new trade record
+     *
+     * @param dto CurrencyRateDataDTO
+     * @return CurrencyRateDataDTO
+     */
     public CurrencyRateDataDTO addTrades(CurrencyRateDataDTO dto) {
         dataStorageService.addRecord(dto);
         return dto;
     }
 
+    /**
+     * Get the list of added data
+     *
+     * @return ArrayList of CurrencyRateDataDTO
+     */
     @Override
     public ArrayList<CurrencyRateDataDTO> getExchangeHistory() {
         return dataStorageService.getCurrencyHistory();

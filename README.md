@@ -1,4 +1,4 @@
-# RESTful API
+# RESTful API Demo
 
 This project is a demo of Spring framework RESTful API. The whole purpose of this application is to show:
 1. how to build an application with accessible endpoint.
@@ -6,14 +6,19 @@ This project is a demo of Spring framework RESTful API. The whole purpose of thi
 
 ## Run the application
 
-This is a Spring framework application, simply run the application from ```RestServiceApplication```
+This is a Spring framework application, simply run the application from ```RestServiceApplication```.
 
-## API Requests
+Use API testing tools like Postman to test the API service.
 You can find the default port in ```application.properties```
 ```java
 server.port = 18080
 ```
-To add a new trading data: ```POST``` request via```/api/addexchangedata```
+## API Requests
+This demo includes two useable API:
+1. Add new trading data
+2. Retrieve a full list of added records
+
+#### To add a new trading data: ```POST``` request via```/api/addexchangedata```
 ```json
 {
   "userId": "134256",
@@ -41,13 +46,11 @@ Response
 }
 ```
 
-To retrieve full list of added records: ```GET``` request via ```/api/getexchangehistory```
+#### To retrieve a full list of added records: ```GET``` request via ```/api/getexchangehistory```
 
 ```json
 //no params
 ```
-Note: This method may changed to POST method and add params to limit the result size for performance purpose when dealing with large data size in DB.
-
 Response for two added data sets
 ```json
 {
@@ -83,8 +86,8 @@ Currently, there is only one test case
 ```AddRandomData2List()``` in ```ExchangeControllerTests``` to test the basic functionality to add data and retrieve past records.
 
 More test cases should be added to the project, for example:
-1. Validity of input data (ex. rate and amount should always larger than 0)
-2. Missing fields when adding data via endpoint
+1. Validate input data (ex. rate and amount should always larger than 0, incorrect date)
+2. Check for missing parameters when receiving request.
 3. (Stress test) Large data size testing, especially when using DB. We want to make sure the DB can handle large data without a problem.
 
 ## Improvement
@@ -94,6 +97,7 @@ There are many ways we can improve this application for actual PROD environment 
 3. Add try catch for exception handlings
 4. Add debug log for important functions to help debugging when problems occurs  (SLF4J, Log4j)
 5. ```DB related``` Proper DB table settings to handle data in the shortest time
+6. Restrict the number of records and add time condition when retrieving from API ```/api/getexchangehistory```. This can save time and resources when the data set is huge.
 
 ## Development Environment
 Project was tested and developed in the below environment:

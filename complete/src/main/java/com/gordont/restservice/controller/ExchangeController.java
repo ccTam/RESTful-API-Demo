@@ -22,12 +22,13 @@ public class ExchangeController {
 
     @PostMapping("/addexchangedata")
     public CurrencyRateDataDTO ExchangeFeed(@RequestBody CurrencyRateDataDTO dto) {
-        System.out.println(dto.toString());
+        System.out.println("addexchangedata: " + dto.toString());
         return exchangeService.addTrades(dto);
     }
 
     /**
-     * Current implementation will only use memory as a DB for POC purpose. In production environment, actual DB is necessary to avoid buffer overflow or memory leak
+     * Get the list of added data
+     *
      * @return CurrencyHistoryRecordsDTO
      */
     @GetMapping("/getexchangehistory")
@@ -37,7 +38,7 @@ public class ExchangeController {
         results.setHistoryRecords(list);
         results.setResultSize(list.size());
         results.setCurrentTime(LocalDateTime.now());
-        System.out.println(results);
+        System.out.println("getexchangehistory: " + results);
         return results;
     }
 }
