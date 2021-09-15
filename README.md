@@ -77,7 +77,7 @@ Response for two added data sets
     }
   ],
   "resultSize": 2,
-  "currentTime": "2021-09-14T11:50:38.041"
+  "currentTime": "11-Sep-21 11:50:38"
 }
 ```
 
